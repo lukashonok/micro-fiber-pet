@@ -39,13 +39,27 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
+      - name: Calculate source hash
+        id: hash
+        run: |
+          # Only main folders in grep ...
+          src_hash=$(git ls-tree -r HEAD --name-only \
+            | grep -E '^(cmd|pkg|api)/' \
+            | sort \
+            | xargs cat \
+            | sha1sum \
+            | awk '{print $1}')
+          echo "SRC_HASH=$src_hash" >> $GITHUB_ENV
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           file: ./Dockerfile
           push: true
-          tags: dembyvlad/micro-fiber-pet:latest
+          tags: |
+            dembyvlad/micro-fiber-pet:${{ env.SRC_HASH }}
+            dembyvlad/micro-fiber-pet:latest
 
   # -------------------------
   # 3. Deploy to VPS
