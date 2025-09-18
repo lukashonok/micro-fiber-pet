@@ -7,7 +7,6 @@ import (
 	"os"
 	"time"
 
-	"github.com/joho/godotenv"
 	"github.com/lukashonok/micro-fiber-pet/api/routes"
 	"github.com/lukashonok/micro-fiber-pet/pkg/book"
 	migrate "github.com/xakep666/mongo-migrate"
@@ -21,9 +20,6 @@ import (
 )
 
 func main() {
-	if err := godotenv.Load(".env"); err != nil {
-		log.Println("No .env file found")
-	}
 	db, cancel, err := databaseConnection()
 	if err != nil {
 		log.Fatal("Database Connection Error $s", err)

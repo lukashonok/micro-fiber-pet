@@ -12,11 +12,15 @@ services:
       MONGO_INITDB_DATABASE: book_storage
     volumes:
       - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--username", "root", "--password", "example", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   app:
-    image: dembyvlad/micro-fiber-pet:latest
+    image: dembyvlad/micro-fiber-pet:local
     container_name: microfiber-app
-    restart: always
     ports:
       - "3000:3000"
     environment:
@@ -24,7 +28,8 @@ services:
       DB_NAME: book_storage
       APP_PORT: 3000
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
 
 volumes:
   mongo_data:
