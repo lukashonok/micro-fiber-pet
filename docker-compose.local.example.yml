@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: microfiber-mongo
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: book_storage
+    volumes:
+      - mongo_data:/data/db
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: microfiber-app
+    ports:
+      - "3000:3000"
+    environment:
+      DB_DSN: "mongodb://root:example@mongo:27017/book_storage?authSource=admin"
+      DB_NAME: book_storage
+      APP_PORT: 3000
+    depends_on:
+      - mongo
+
+volumes:
+  mongo_data:

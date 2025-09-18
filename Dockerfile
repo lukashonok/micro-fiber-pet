@@ -1,17 +1,19 @@
 # Dockerfile
-FROM golang:1.21-alpine AS builder
+FROM golang:1.25-alpine AS builder
 
 WORKDIR /app
 
-# Caching dependencies
+# Копируем модули
 COPY go.mod go.sum ./
-RUN go mod download
+RUN go mod tidy
 
-# Copying sources and build them
+# Копируем весь проект
 COPY . .
-RUN go build -o app
 
-# Final image
+# Билдим main.go из cmd
+RUN go build -o app ./cmd
+
+# Финальный минимальный образ
 FROM alpine:latest
 WORKDIR /app
 COPY --from=builder /app/app .
