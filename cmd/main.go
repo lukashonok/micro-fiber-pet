@@ -32,7 +32,7 @@ func main() {
 	app := fiber.New()
 	app.Use(cors.New())
 	app.Get("/", func(ctx *fiber.Ctx) error {
-		return ctx.Send([]byte("Test Golang API Works!"))
+		return ctx.Send([]byte("Golang API Works!"))
 	})
 	api := app.Group("/api")
 	routes.BookRouter(api, bookService)
