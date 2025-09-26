@@ -12,6 +12,7 @@ type Book struct {
 	ID     bson.ObjectID `json:"id" bson:"_id,omitempty"`
 	Title  string        `json:"title"`
 	Author string        `json:"author"`
+	Url    string        `json:"url"`
 }
 
 // BookSuccessResponse is the singular SuccessResponse that will be passed in the response by
@@ -21,6 +22,7 @@ func BookSuccessResponse(data *entities.Book) *fiber.Map {
 		ID:     data.ID,
 		Title:  data.Title,
 		Author: data.Author,
+		Url:    data.Url,
 	}
 	return &fiber.Map{
 		"status": true,

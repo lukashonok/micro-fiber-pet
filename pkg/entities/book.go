@@ -9,8 +9,9 @@ import (
 // Book Constructs your Book model under entities.
 type Book struct {
 	ID        bson.ObjectID `json:"id"  bson:"_id,omitempty"`
-	Title     string        `json:"title" bson:"title"`
+	Title     string        `json:"title" bson:"title,omitempty"`
 	Author    string        `json:"author" bson:"author,omitempty"`
+	Url       string        `json:"url" bson:"url"`
 	CreatedAt time.Time     `json:"createdAt" bson:"createdAt"`
 	UpdatedAt time.Time     `json:"updatedAt" bson:"updatedAt"`
 }
