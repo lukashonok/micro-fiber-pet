@@ -1,6 +1,6 @@
 # ⚙️ micro-fiber-pet (Golang API)
 
-🎥 **YouTube Guide:** [Watch the full setup here](https://youtube.com/)
+🎥 **YouTube Guide:** [Watch the full setup here](https://youtu.be/2i8Fdb395yo)
 
 ---
 
