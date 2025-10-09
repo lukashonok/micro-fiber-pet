@@ -74,7 +74,7 @@ func buildDefaultServices() (mq.DefaultServices, error) {
 	// RabbitMQ config
 	rabbitURL := os.Getenv("RABBITMQ_URL")
 	if rabbitURL == "" {
-		log.Fatal("missing required environment variables (MINIO_*, RABBITMQ_URL, FONT_PATH)")
+		log.Fatal("missing required environment variables (MINIO_*, RABBITMQ_URL)")
 	}
 	conn, err := amqp.Dial(rabbitURL)
 	if err != nil {
