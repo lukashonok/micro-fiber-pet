@@ -37,3 +37,5 @@ go run main.go
 
 ## Kubernetes Schema
 ![Architecture](schema/kubernetes-schema.jpg)
+
+⚙️ **Shared Configs:** [github.com/lukashonok/micro-other-services-pet](https://github.com/lukashonok/micro-other-services-pet)
