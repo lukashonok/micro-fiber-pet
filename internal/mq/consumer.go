@@ -76,7 +76,7 @@ func (c *Consumer) Start() {
 		for msg := range c.msgs {
 			handler, ok := c.handlers[msg.RoutingKey]
 			if !ok {
-				log.Printf("No handler for action: %s", msg.RoutingKey)
+				log.Printf("No handler for this action: %s", msg.RoutingKey)
 				continue
 			}
 			handler(c.services)(msg)
