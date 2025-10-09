@@ -76,5 +76,4 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             cd /opt/
-            devbox shell
-            task deploy:fiber
+            devbox run task deploy:fiber
