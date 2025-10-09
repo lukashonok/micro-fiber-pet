@@ -19,9 +19,7 @@ type service struct {
 
 // NewService is used to create a single instance of the service
 func NewService(r Repository) Service {
-	return &service{
-		repository: r,
-	}
+	return &service{repository: r}
 }
 
 // InsertBook is a service layer that helps insert book in BookShop
