@@ -75,7 +75,5 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /opt/micro-fiber-pet
-            docker compose down
-            docker compose pull
-            docker compose up -d
+            cd /opt/
+            task deploy:fiber
